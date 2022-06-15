@@ -22,6 +22,11 @@ then you can import the available components like so
 import { Button } from '@ulissesferreira/moon'
 ```
 
+and the style sheet like so
+
+```vue
+@import "@ulissesferreira/moon/style.css";
+```
 ## Available commands
 
 Here is a list of all available npm commands.
