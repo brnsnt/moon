@@ -14,6 +14,10 @@
     ".": {
       "import": "./dist/moon.es.js",
       "require": "./dist/moon.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "unpkg": "./dist/moon.umd.js",
@@ -24,20 +28,27 @@
     "serve": "vitepress serve docs",
     "build:library": "vite build",
     "analyze": "vite build --config analyze.config.js",
-    "publish:library": "npm publish --access public"
+    "publish:library": "npm publish --access public",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write"
   },
   "peerDependencies": {
-    "vue": "^3.0.5"
+    "vue": "^3.1.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.1.4",
-    "@vue/compiler-sfc": "^3.0.5",
-    "rollup-plugin-analyzer": "^4.0.0",
-    "vite": "^2.0.1",
-    "vitepress": "^0.12.2"
+    "@vitejs/plugin-vue": "^1.2.5",
+    "@vue/compiler-sfc": "^3.1.5",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^7.14.0",
+    "prettier": "^2.3.2",
+    "rollup-plugin-visualizer": "^5.5.2",
+    "vite": "^2.4.3",
+    "vitepress": "^0.15.6"
   },
   "dependencies": {
-    "tabbable": "^5.1.6",
+    "mitt": "^3.0.0",
+    "tabbable": "^5.2.0",
     "tippy.js": "^6.3.1"
   }
 }

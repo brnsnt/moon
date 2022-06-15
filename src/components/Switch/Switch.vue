@@ -11,14 +11,11 @@
       aria-hidden="true"
       class="c-Switch__input"
       type="checkbox"
-      @click="onTrigger()"
       :disabled="disabled"
-    >
+      @click="onTrigger()"
+    />
     <div class="c-Switch__slider" />
-    <span
-      v-if="label"
-      class="c-Switch__label"
-    >
+    <span v-if="label" class="c-Switch__label">
       {{ label }}
     </span>
   </label>
@@ -35,17 +32,15 @@ export default {
     label: {
       type: String,
       required: false,
-      default: undefined
+      default: undefined,
     },
     disabled: {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
-  emits: [
-    'update:modelValue'
-  ],
+  emits: ['update:modelValue'],
   data() {
     return {
       state: this.modelValue,
@@ -55,23 +50,23 @@ export default {
     switchAttributes() {
       return {
         'aria-disabled': this.disabled,
-        tabindex: this.disabled ? undefined : '0'
+        tabindex: this.disabled ? undefined : '0',
       }
-    }
+    },
   },
-  watcher: {
+  watch: {
     modelValue(newModelValue) {
       this.state = newModelValue
     },
     state(newValue) {
       this.$emit('update:modelValue', newValue)
-    }
+    },
   },
   methods: {
     onTrigger() {
       this.state = !this.state
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped>
@@ -93,23 +88,23 @@ export default {
   display: block;
   width: 48px;
   height: 24px;
-  border: 1px solid #CCCCCC;
+  border: 2px solid black;
   border-radius: 24px;
-  background-color: #CCCCCC;
-  transition: 0.150s;
+  background-color: white;
+  transition: 0.15s;
 }
 
 .c-Switch__slider:before {
-  content: "";
+  content: '';
   border-radius: 24px;
   position: absolute;
   position: absolute;
-  height: 20px;
-  width: 20px;
-  left: 1px;
-  bottom: 1px;
-  background-color: white;
-  transition: 0.150s;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 2px;
+  background-color: black;
+  transition: 0.15s;
 }
 
 .c-Switch__label {
@@ -129,21 +124,34 @@ export default {
 }
 
 .c-Switch__input:checked + .c-Switch__slider:before {
+  background-color: white;
   transform: translate(24px);
 }
 
 /* Disabled */
 
-.c-Switch[aria-disabled="true"] {
+.c-Switch[aria-disabled='true'] {
   cursor: not-allowed;
 }
 
-.c-Switch[aria-disabled="true"] .c-Switch__slider  {
-  border: 1px solid #757575;
-  background-color: #E0E0E0;
+.c-Switch[aria-disabled='true'] .c-Switch__slider {
+  border: 2px solid #757575;
+  background-color: #e0e0e0;
 }
 
-.c-Switch[aria-disabled="true"] .c-Switch__slider:before {
+.c-Switch[aria-disabled='true'] .c-Switch__input:checked + .c-Switch__slider {
+  border: 2px solid #757575;
   background-color: #757575;
+}
+
+.c-Switch[aria-disabled='true'] .c-Switch__slider:before {
+  background-color: #757575;
+}
+
+.c-Switch[aria-disabled='true']
+  .c-Switch__input:checked
+  + .c-Switch__slider:before {
+  background-color: #e0e0e0;
+  transform: translate(24px);
 }
 </style>
